@@ -1,0 +1,77 @@
+#Elenão
+
+print('------------------------------------X------------------------------------\n')
+
+
+print('Exercício 1 = Considere as seguintes declarações de atribuições:')
+
+print('\n')
+
+print('largura =17 \n'
+      'altura=12.0\n'
+      'delimitador="."\n')
+
+
+largura = 17
+altura = 12.0
+delimitador = "."
+metade_larg1=largura=largura/2
+
+print('1) metade da lergura=', metade_larg1)
+print(type(metade_larg1))
+
+metade_larg2=largura/2.0
+
+print('2) metade da largura (2.0)=', metade_larg2)
+print(type(metade_larg2))
+altura_3=altura/3
+
+print('3) altura dividido por 3=', altura_3)
+print(type(altura_3))
+y=1+2*5
+
+print('4) y=', y)
+print(type(y))
+z=delimitador*5
+
+print('5) z=', z)
+print(type(z))
+print('------------------------------------X------------------------------------\n')
+
+print('Exercício 2 = O volume de uma esfera de raio r = 5')
+
+import math
+r=5
+
+V=(4/3)*math.pi*(r)**3
+
+print('Volume=', V)
+
+print('------------------------------------X------------------------------------\n')
+
+print('Exercicio 3 = Suponha que o preço de um livro seja 24.95 reais, \n'
+      ' porém as livrarias têm desconto de 40%. Os custos de envio são de 3.00 reais\n'
+      ' para o primeiro livro e 0.75 reais para os livros adicionais.\n'
+      ' Qual é o custo total da compra de 60 livros?')
+
+livros = 24.95
+desconto = 1-0.4
+n = 60
+entrega = 3 + 0.75*(n-1)
+resultado = (livros*desconto*n) + entrega
+print('\n')
+print('custo total = ', resultado, 'R$')
+
+print('------------------------------------X------------------------------------\n')
+
+print('exercício 4\n')
+
+Lambda=632.8*10**(-9)
+D=1.98
+d=0.250*10**(-3)
+
+delta_y=(Lambda*D)/d
+
+print('delta y=' ,delta_y, 'm')
+
+print('------------------------------------X------------------------------------\n')

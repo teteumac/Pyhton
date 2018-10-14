@@ -1,0 +1,89 @@
+def meuverso(palavra):
+    print(palavra)
+    print(palavra)
+
+def minhacancao (verso1, verso2):
+    meuverso(verso1)
+    meuverso(verso2)
+
+meuverso(35*90/110)
+minhacancao('naaaaa na na nana nanaa','tudum tudum dum')
+
+bicycle= "I want to ride my bicycle"
+meuverso(bicycle)
+
+print('---------------------------------------------X------------------------------------------\n')
+
+def gato_duplo (parte1, parte2):
+    gato = parte1 + parte2
+    meuverso (gato)
+linha1 = "blim "
+linha2 = "blem! "
+gato_duplo(linha1,linha2)
+
+print('---------------------------------------------X------------------------------------------\n')
+
+resultado = meuverso("under pressure")
+print(resultado)
+print(type(resultado))
+
+
+print('---------------------------------------------X------------------------------------------\n')
+
+from math import  *
+print(sin(pi/3))
+
+print('---------------------------------------------X------------------------------------------\n')
+
+
+print('Exercícios em sala de aula\n')
+
+print('exercício 1\n')
+def do_twice (f):
+    f ()
+    f ()
+
+def print_spam ():
+    print('spam')
+
+do_twice(print_spam)
+
+print('---------------------------------------------X------------------------------------------\n')
+
+#####################################################################################################
+
+def do_twice2 (f,x):
+    f(x)
+    f(x)
+def print_twice(palavras):
+    print(palavras)
+    print(palavras)
+do_twice2(print_twice, 'spam')
+
+print('---------------------------------------------X------------------------------------------\n')
+
+#####################################################################################################
+
+def do_four (f,x):
+    do_twice2(f,x)
+    do_twice2(f,x)
+do_four(print_twice, 'spam')
+
+print('---------------------------------------------X------------------------------------------\n')
+
+print('exercicio 5')
+
+def printpal(coisas):
+    print(coisas)
+
+def linha():
+    print('+', '-'*10, '+','-'*10,'+')
+def coluna():
+    linha()
+    do_four(printpal,'|            |            | ')
+    linha()
+    do_four(printpal,'|            |            | ')
+    linha()
+
+coluna()
+

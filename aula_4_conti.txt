@@ -1,0 +1,61 @@
+#exercicio 1
+import time
+tempo = time.localtime()
+print(time.localtime())
+def dia_da_semana(s):
+    int (s)
+    S = ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo']
+    return S[s]
+
+
+def mes(m):
+    int (m)
+    M = ['janeiro', 'feveiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+    return M[m-1]
+
+def solu():
+
+    print('\n', 'dia=', tempo.tm_mday,'\n', 'dia da semana=', dia_da_semana(tempo.tm_wday),'\n' , 'mes=', mes(tempo.tm_mon), '\n','ano=', tempo.tm_year, '\n', 'hora=', tempo.tm_hour, ':', tempo.tm_min, ':', tempo.tm_sec)
+solu()
+
+print( '\n', '------------------------------------------------------------------X------------------------------------------------------------------')
+
+
+#exercicio 2
+#auxiliado por João Pedro Gomes, por eu não saber o que significa range
+def fat(n):
+    fat=1
+    for k in range(n):
+        fat=fat*(k+1)
+    return fat
+print('78!=', fat(78))
+print( '\n', '------------------------------------------------------------------X------------------------------------------------------------------')
+
+#exercicio 3
+
+def iden(x,y):
+    if (x>y):
+        print('o numero ', x, 'é maior que ', y)
+        print('o numero', x, 'é o maior de todos')
+    if (x<y):
+        print('o numero ', x, 'é menor que ', y)
+        print('o numero ', y, 'é o maioral')
+    if (x==y):
+        print('os numeros', x, 'e', y, 'são iguais')
+
+iden(10,14)
+iden(6,2)
+iden(8521,8521)
+
+print( '\n', '------------------------------------------------------------------X------------------------------------------------------------------')
+
+def inde(x,y):
+    if (x>y):
+        print ('[',y,', ',x, ']')
+    if (x<y):
+        print ('[',x,', ',y, ']')
+    if (x==y):
+        print ('[',x,', ',y, ']')
+
+inde(89765,9785)
+

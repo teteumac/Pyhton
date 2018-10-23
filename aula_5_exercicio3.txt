@@ -1,0 +1,5 @@
+lista=[2,6,8,7]
+multi=1
+for i in range(len(lista)):
+    multi=multi*lista[i]
+print(multi)

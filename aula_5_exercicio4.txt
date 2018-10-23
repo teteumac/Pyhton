@@ -1,0 +1,6 @@
+n = int(input('entre com o numero ta ok = '))
+
+if n in range (100,699):
+    print('{} esta no intervalo'.format(n))
+else:
+    print('{} não esta, ta ok!'.format(n))

@@ -1,0 +1,16 @@
+n = int(input('digite o numero:'))
+
+w = 1
+s = 0
+
+while(w<s):
+    if (n%w) == 0:
+        s+=w
+        w+=1
+    else:
+        w+=1
+
+if (s==n):
+    print('O numero\n'  +  str(n)  +  '\né um numero perfeito')
+else:
+    print('O número\n'  +  str(n)  +  '\nnão é perfeito')

@@ -1,0 +1,5 @@
+lista=[2,6,8,7]
+soma = 0
+for i in range(len(lista)):
+    soma=soma+lista[i]
+print(soma)

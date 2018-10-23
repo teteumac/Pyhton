@@ -1,0 +1,10 @@
+lista=[[],[]]
+valor = 0
+for c in range(1,8):
+    valor = int(input(f'Entra com o numero:'))
+    if valor % 2 == 0:
+        lista[0].append(valor)
+    else:
+        lista[1].append(valor)
+print('-='*30)
+print(f' Os valores pares são: {lista[0]}')

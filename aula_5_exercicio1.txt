@@ -1,5 +1,11 @@
-lista=[2,6,8,7]
-soma = 0
-for i in range(len(lista)):
-    soma=soma+lista[i]
-print(soma)
+a = int(input('entre com o primeiro:'))
+b = int(input('entre com o segundo:'))
+c = int(input('entre com o terceiro:))
+
+maior = a
+if b>a and b>c:
+    maior = b
+if c>a and c>b:
+    maior = c
+print('O maior valor é {}'.format(maior))    
+   

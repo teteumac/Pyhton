@@ -1,11 +1,14 @@
+def max():
+    if b>a and b>c:
+        maior = b
+    if c>a and c>b:
+        maior = c
+    if a>b and a>c:
+        maior = a
+    return maior
+
 a = int(input('entre com o primeiro:'))
 b = int(input('entre com o segundo:'))
-c = int(input('entre com o terceiro:))
+c = int(input('entre com o terceiro:'))
 
-maior = a
-if b>a and b>c:
-    maior = b
-if c>a and c>b:
-    maior = c
-print('O maior valor é {}'.format(maior))    
-   
+print(max())

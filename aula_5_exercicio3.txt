@@ -1,11 +1,9 @@
-def n():
-    n = int(input('entre com o numero ta ok = '))
-    if n in range (107,673):
-       print('{} esta no intervalo, tá OK!'.format(n))
-    else:
-       print('{} não esta no intervalo, ta OK!'.format(n))
+def multi():
+    lista=[2,6,8,7]
+    multi=1
+    for i in range(len(lista)):
+        multi=multi*lista[i]
+    return multi
 
-    return n
-
-n()
+print(multi())
 

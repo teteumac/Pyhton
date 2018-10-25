@@ -1,10 +1,11 @@
-lista=[]
-valor = 0
-for c in range(1,8):
-    valor = int(input(f'Entra com o numero:'))
+def valor():
+    lista=[]
+    valor = 0
+    for i in range(1,5):
+        valor = int(input('Entra com o numero:'))
     if valor % 2 == 0:
         lista.append(valor)
+    return valor
 
-print('-='*30)
-print(f' Os valores pares são: {lista}')
 
+print(valor())

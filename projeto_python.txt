@@ -1,0 +1,258 @@
+#Projeto 1 - Introdução a Python
+#Profs: Helena Malbouisson e Clemencia Mora
+#Alunos: João Pedro Gomes Pinheiro e Matheus Pereira Macedo
+#Data: 14/11/2018
+#PÊNDULO ELÁSTICO
+
+
+'''
+Obs.: os calculos foram feitos sem usar coordenadas polares
+'''
+
+
+import math #importamos o modulo math para realizar as operações matemáticas ao longo do algorítimo
+
+
+
+print('-----------------------------------------------------------------------')
+#Parâmetros:
+print('Input de Parâmetros:')
+l0 = float(input('Digite o comprimento da mola relaxada, em metros: '))
+k = float(input('Digite a constante elástica da mola, em Newtons/metro: '))
+m = float(input('Digite a massa do corpo, em quilogramas: '))
+g = 9.81 #m/s²
+print('-----------------------------------------------------------------------')
+
+
+
+#Condições Iniciais
+print('\n')
+print('Input das Condições Iniciais:')
+x = float(input('Digite a posição inicial em x, em metros: '))
+z = float(input('Digite a posição inicial em z, em metros: '))
+v_x = float(input('Digite a velocidade inicial em x, em metros/segundo: '))
+v_z = float(input('Digite a velocidade inicial em z, em metros/segundo: '))
+print('\n')
+print('-----------------------------------------------------------------------')
+
+
+
+#Valor calcular r e theta a partir das funções cal_r e calc_theta
+#Definindo funções:
+def calc_r(x,z):
+	'''Calculando o módulo de coordenadas cartesianas a partir dos valores respectivos de x e z
+		r = sqrt(x²+z²)
+	'''
+	r = math.sqrt(x*x+z*z)
+	return r
+def calc_theta(x,z):
+	'''Calculando o valor de theta a partir dos valores respectivos de x e z
+		theta = arctan(x/z)
+	'''
+	theta=0
+	if (z<0):
+		theta = math.atan(-1*x/z)
+	elif (x>0 and z>=0):
+		theta = math.pi/2 + math.atan(z/x)
+	elif (x<0 and z>=0):
+		theta = -1*math.pi/2 + math.atan(z/x)
+	elif (x==0):
+		theta = 0
+	return theta	
+
+def calc_ac_x(r,theta):
+	'''Calculando a aceleração em x, a partir dos parâmetros constantes e dos respectivos valores de r e theta
+		aceleração_x = -1*(k*(r-l0)*sin(theta))/m
+	'''
+	ac_x = -1*(k*(r-l0)*math.sin(theta))/m
+	return ac_x
+
+def calc_ac_z(r,theta):
+	'''Calculando a aceleração em z, a partir dos parâmetros constantes e dos respectivos valores de r e theta
+		aceleração_z = -1*g+(k*(r-l0)*cos(theta))/m
+	'''
+	ac_z = -1*g+(k*(r-l0)*math.cos(theta))/m
+	return ac_z
+
+#Coletando o valor máximo para o tempo 
+t_max = float(input('Insira o valor máximo de tempo, em segundos: '))
+passo = float(input('Insira o passo do tempo, ou seja, de quanto em quanto o programa tomará uma medida (em segundos): '))
+t = 0
+ac_x_lista=[]
+ac_z_lista=[]
+v_x_lista=[]
+v_z_lista=[]
+x_lista=[]
+z_lista=[]
+t_lista=[]
+print('Início do processamento dos dados')
+print('\n')
+while t<=t_max:
+	r = calc_r(x,z)
+	theta = calc_theta(x,z)
+	ac_x = calc_ac_x(r,theta)
+	ac_z = calc_ac_z(r,theta)
+	print('x =',x, '|' ,'z =',z)
+	print('r =',r, '|' ,' ângulo theta =',theta*180/math.pi)
+	print('aceleração em x =',ac_x, '|'  ,' aceleração em z =',ac_z)
+	print('__________________________________________________________________________________________\n')
+	v_x = v_x + ac_x*passo
+	v_z = v_z + ac_z*passo
+	x = x + v_x*passo 
+	z = z + v_z*passo
+	ac_x_lista.append(ac_x)
+	ac_z_lista.append(ac_z)
+	v_x_lista.append(v_x)
+	v_z_lista.append(v_z)
+	x_lista.append(x)
+	z_lista.append(z)
+	t = t+passo
+	t_lista.append(t)
+
+print('-----------------------------------------------------------------------')
+print('Fim do processamento dos dados')
+print('-----------------------------------------------------------------------')
+
+
+
+'''
+Contruindo osmódulos de R, A e V: 
+R = sqrt(x²+z²)
+V = sqrt(vx²+vz²)
+A = sqrt(ax²+az²)
+'''
+
+r_lista = []
+for i in range(0,len(x_lista)):
+	r = calc_r(x_lista[i],z_lista[i])
+	r_lista.append(r)
+
+
+v_lista = []
+for i in range(0,len(v_x_lista)):
+	v = calc_r(v_x_lista[i],v_z_lista[i])
+	v_lista.append(v)
+
+ac_lista = []
+for i in range(0,len(x_lista)):
+	ac = calc_r(ac_x_lista[i],ac_z_lista[i])
+	ac_lista.append(ac)
+
+energia_lista = []
+for i in range(0,len(t_lista)):
+	energia = (1/2)*m*(v_lista[i])**2 + m*g*(l0-z_lista[i]) + (1/2)*k*(l0-r_lista[i])**2
+	energia_lista.append(energia)
+'''
+Escrevendo os dados em um arquivo .txt
+o código write escreve a lista gerada pelo programa em um arquivo .txt
+'''
+
+arq = open('dados_projetos.txt', 'w')
+arq.write('t(s)       x(m)       z(m)        vx(m/s)     vz(m/s)     ac_x(m/s²)  ac_z(m/s²)    energia(J)' )
+arq.write('\n')
+for i in range(0,len(t_lista)):
+	arq.write(str("%.4f" % t_lista[i]))
+	arq.write('     ')
+	arq.write(str("%.4f" % x_lista[i]))
+	arq.write('     ')
+	arq.write(str("%.4f" % z_lista[i]))
+	arq.write('     ')
+	arq.write(str("%.4f" % v_x_lista[i]))
+	arq.write('     ')	
+	arq.write(str("%.4f" % v_z_lista[i]))
+	arq.write('     ')	
+	arq.write(str("%.4f" % ac_x_lista[i]))
+	arq.write('     ')	
+	arq.write(str("%.4f" % ac_z_lista[i]))	
+	arq.write('       ')	
+	arq.write(str("%.4f" % energia_lista[i]))		
+	arq.write('\n')			
+arq.close()
+
+#usamos (%.4f) para truncar em 4 casas decimais depois da vírgula os resultados gerados no arquivo de texto
+
+
+'''
+Graficando
+Para cada gráfico que queremos plotar, importamos o módulo matplotlib.pylot para realizar os gráficos 
+'''
+
+import matplotlib.pyplot as XversusZ
+import matplotlib.pyplot as TversusX
+import matplotlib.pyplot as TversusZ
+import matplotlib.pyplot as TversusVx
+import matplotlib.pyplot as TversusVz
+
+import matplotlib.pyplot as XversusVx
+import matplotlib.pyplot as ZversusVz
+import matplotlib.pyplot as TversusV
+import matplotlib.pyplot as TversusA
+import matplotlib.pyplot as TversusR
+
+import matplotlib.pyplot as TversusE
+
+# O gráfico da eneergia pelo tempo, nos diz que ela não é conservada, para isso, a reta seria constante no tempo e como vemos, ela oscila temporalemente
+TversusE.plot(t_lista,energia_lista)
+TversusE.title('tempo X energia')				
+TversusE.xlabel('t (s)')
+TversusE.ylabel('energia (J)')
+TversusE.show()
+TversusE.close()
+
+
+XversusVx.plot(x_lista,v_x_lista)
+XversusVx.title('x X velocidade em x')
+XversusVx.xlabel('x (m)')
+XversusVx.ylabel('Vx (m)')	
+XversusVx.show()
+XversusVx.close()
+
+ZversusVz.plot(z_lista,v_z_lista)
+ZversusVz.title('z X velocidade em z')
+ZversusVz.xlabel('z (m)')
+ZversusVz.ylabel('Velocidade em z (m)')
+ZversusVz.show()
+ZversusVz.close()
+
+TversusV.plot(t_lista,v_lista)
+TversusV.title('tempo X módulo da velocidade')
+TversusV.xlabel('t (s)')
+TversusV.ylabel('V (m/s)')
+TversusV.show()
+TversusV.close()
+
+TversusA.plot(t_lista,ac_lista)
+TversusA.title('t X módulo da aceleração')
+TversusA.xlabel('t (s)')
+TversusA.ylabel('Ac (m/s²)')
+TversusA.show()
+TversusA.close()
+
+TversusR.plot(t_lista,r_lista)
+TversusR.title('tempo X módulo de r')
+TversusR.xlabel('t (s)')
+TversusR.ylabel('R (m)')
+TversusR.show()
+TversusR.close()
+
+#Esse gráfico mostra o movimento que o pêndulo faz no plano x e z
+XversusZ.plot(x_lista,z_lista)
+TversusZ.title('x X z')
+XversusZ.xlabel('x (m)')
+XversusZ.ylabel('z (m)')
+XversusZ.show()
+XversusZ.close()
+
+TversusZ.plot(t_lista,z_lista)
+TversusZ.title('tempo X z')
+TversusZ.xlabel('tempo (s)')
+TversusZ.ylabel('z (m)')
+TversusZ.show()
+TversusZ.close()
+
+TversusX.plot(t_lista,x_lista)
+TversusX.title('tempo X x')
+TversusX.xlabel('t (s)')
+TversusX.ylabel('x (m)')
+TversusX.show()
+TversusX.close()
